@@ -50,7 +50,6 @@
 <body>
 	<div class="container">
 		<div>
-			<h2>입력</h2>
 <label for="image">파일명/Image: 캐릭터파일이름</label><br>
 <textarea id="image" name="image"></textarea><br>
 
@@ -70,10 +69,13 @@
 <textarea id='note' name="note"></textarea><br>
 
 <label for="koreanDescription">한글 설명:</label><br>
-<textarea id='koreanDescription' name="koreanDescription" style="height:15%"></textarea><br>
+<textarea id='koreanDescription' name="koreanDescription" style="height:12%"></textarea><br>
 
 <label for="englishDescription">English description:</label><br>
-<textarea id='englishDescription' name="englishDescription" style="height:15%"></textarea><br>
+<textarea id='englishDescription' name="englishDescription" style="height:12%"></textarea><br>
+
+<label for="Categories">분류:[[분류:소녀(Girl)]] [[분류:메이드(Maid)]] [[분류:고양이 수인(Catgirl)]]</label><br>
+<textarea id='Categories' name="Categories"></textarea><br>
 
 
 			<button class="button" onclick="submitForm()">Submit</button>
@@ -95,8 +97,9 @@
 			const note = document.getElementById("note").value;
 			const koreanDescription = document.getElementById("koreanDescription").value;
 			const englishDescription = document.getElementById("englishDescription").value;
+			const Categories = document.getElementById("Categories").value;
 
-			const output = `||<width=15%>이미지||<width=50%>[[파일:${image}.png|align=center]]||\n||<width=15%>제작자 / Creator||<width=85%>${creator}||\n||<width=15%>이름 / Name||<width=85%>${name}||\n||<width=15%>태그 / Tags||<width=85%>${tags}||\n||<width=15%>Download link||<width=85%>[[${downloadLink}]]||\n||<width=15%>비고 / Note||<width=85%>${note}||\n||<width=15%>한글 설명||<width=85%>${koreanDescription}||\n||<width=15%>English Description||<width=85%>${englishDescription}||`;
+			const output = `||<width=15%>이미지||<width=50%>[[파일:${image}.png|align=center]]||\n||<width=15%>제작자 / Creator||<width=85%>${creator}||\n||<width=15%>이름 / Name||<width=85%>${name}||\n||<width=15%>태그 / Tags||<width=85%>${tags}||\n||<width=15%>Download link||<width=85%>[[${downloadLink}]]||\n||<width=15%>비고 / Note||<width=85%>${note}||\n||<width=15%>한글 설명||<width=85%>${koreanDescription}||\n||<width=15%>English Description||<width=85%>${englishDescription}||\n${Categories}`;
 
 			document.getElementById("output").value = output;
 		}
