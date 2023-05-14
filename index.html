@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
 	<title>Character Wiki Editor</title>
 	<style>
@@ -66,7 +67,11 @@
 			padding: 10px;
 		}
 		
-	
+		@media screen and (max-width: 720px) {
+			.container {
+				flex-direction: column;
+			}
+		}	
 	</style>
 </head>
 <body>
