@@ -45,11 +45,33 @@
 		  margin: 4px 2px;
 		  cursor: pointer;
 		}
+		#thumbnail {
+		display: none;
+		}
+		#thumbresult {
+		display: none;
+		}		
+		
+		table {
+			border-collapse: collapse;
+			border: 1px solid black;
+		}
+		
+		td {
+		font-weight: bold;
+		}		
+		
+		th, td {
+			border: 1px solid black;
+			padding: 10px;
+		}
+		
+	
 	</style>
 </head>
 <body>
 	<div class="container">
-		<div>
+		<div id=content>
 			<label for="image">파일명/Image: Yuzu </label><br>
 			<textarea id="image" name="image"></textarea><br>
 
@@ -79,12 +101,72 @@
 
 
 			<button class="button" onclick="submitForm()">Submit</button>
+			<button class="button" onclick="changeThumbnail()">Thumbnail</button>
+			
 		</div>
-		<div>
+
+		<div id="thumbnail">
+			<table>
+			<tr>
+				<td>캐릭터1</td>
+				<td width="99%">
+				<label for="thumimage">파일명/Image : Yuzu</label><br>
+				<textarea id="thumimage" name="thumimage"></textarea><br>
+		
+				<label for="thumname">이름/Name : 수줍은 고양이 소녀 메이드 (Shy Cat Girl Maid)</label><br>
+				<textarea id="thumname" name="thumname"></textarea><br>
+		
+				<label for="thumtags">태그/Tags : [[분류:소녀(Girl)]],[[분류:메이드(Maid)]],[[분류:고양이수인(Catgirl)]]</label><br>
+				<textarea id="thumtags" name="thumtags"></textarea><br>
+				</td>
+			</tr>
+
+			<tr>
+				<td>캐릭터2</td>
+				<td width="99%">
+				<label for="thumimage2">파일명/Image</label><br>
+				<textarea id="thumimage2" name="thumimage2"></textarea><br>
+
+				<label for="thumname2">이름/Name</label><br>
+				<textarea id="thumname2" name="thumname2"></textarea><br>
+
+				<label for="thumtags2">태그/Tags</label><br>
+				<textarea id="thumtags2" name="thumtags2"></textarea><br>
+				</td>
+			</tr>
+
+			<tr>
+				<td>캐릭터3</td>
+				<td width="99%">
+				<label for="thumimage3">파일명/Image</label><br>
+				<textarea id="thumimage3" name="thumimage3"></textarea><br>
+
+				<label for="thumname3">이름/Name</label><br>
+				<textarea id="thumname3" name="thumname3"></textarea><br>
+
+				<label for="thumtags3">태그/Tags</label><br>
+				<textarea id="thumtags3" name="thumtags3"></textarea><br>
+				</td>
+			</tr>
+			</table>
+
+			<button class="button" onclick="submitForm2()">Submit</button>
+			<button class="button" onclick="changeContent()">Content</button>			
+			
+		</div>
+
+
+		<div id=result>
 			<h2>복사하세요</h2>
-			<textarea id="output" readonly style="height:70%"></textarea><br>
+			<textarea id="output" style="height:70%"></textarea><br>
 			<button class="button" onclick="copyToClipboard()" style="width: 100%; height: 20%;">Copy to clipboard</button>
 		</div>
+		
+		<div id=thumbresult>
+			<h2>복사하세요</h2>
+			<textarea id="output2" style="height:70%"></textarea><br>
+			<button class="button" onclick="copyToClipboard2()" style="width: 100%; height: 20%;">Copy to clipboard</button>
+		</div>		
 	</div>
 
 	<script>
@@ -103,18 +185,58 @@
 
 			document.getElementById("output").value = output;
 		}
+		
+		function submitForm2() {
+			const thumimage = document.getElementById("thumimage").value;
+			const thumname = document.getElementById("thumname").value;
+			const thumtags = document.getElementById("thumtags").value;
+			const thumimage2 = document.getElementById("thumimage2").value;
+			const thumname2 = document.getElementById("thumname2").value;
+			const thumtags2 = document.getElementById("thumtags2").value;
+			const thumimage3 = document.getElementById("thumimage3").value;
+			const thumname3 = document.getElementById("thumname3").value;
+			const thumtags3 = document.getElementById("thumtags3").value;			
+
+			const output2 = `||<width=33%>[[파일:${thumimage}.png]]\n||<width=33%>[[파일:${thumimage2}.png]]\n||<width=33%>[[파일:${thumimage3}.png]]\n||\n||<width=33%>[[${thumname}|${thumname}]]\n||<width=33%>[[${thumname2}|${thumname2}]]\n||<width=33%>[[${thumname3}|${thumname3}]]\n||\n||<width=33%>[[${thumtags}]]\n||<width=33%>[[${thumtags2}]]\n||<width=33%>[[${thumtags3}]]\n||`;
+
+			document.getElementById("output2").value = output2;
+		}
 
 			const inputs = document.querySelectorAll('input[type="text"], textarea');
 			for (const input of inputs) {
 				input.addEventListener("input", submitForm);
+				input.addEventListener("input", submitForm2);				
 			}
-
+			
+			
 		function copyToClipboard() {
 			const output = document.getElementById("output");
 			output.select();
 			document.execCommand("copy");
 			alert("Copied to clipboard!");
 		}
+		
+		function copyToClipboard2() {
+			const output2 = document.getElementById("output2");
+			output2.select();
+			document.execCommand("copy");
+			alert("Copied to clipboard!");
+		}
+		
+		function changeContent() {
+		document.getElementById("thumbnail").style.display = "none";
+		document.getElementById("content").style.display = "block";
+		document.getElementById("thumbresult").style.display = "none";
+		document.getElementById("result").style.display = "block";		
+		}
+
+		function changeThumbnail() {
+		document.getElementById("thumbnail").style.display = "block";
+		document.getElementById("content").style.display = "none";
+		document.getElementById("thumbresult").style.display = "block";
+		document.getElementById("result").style.display = "none";	
+		}
+		
 	</script>
 </body>
 </html>
